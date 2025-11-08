@@ -23,5 +23,17 @@ Dann haben wir Pivot Tabellen verwendet und das war einfacher.
 
 
 
+Anschließend haben wir die daten per Python aus der Tabelle gezogen. 
+
+Hier haben wir Arbeitsteilung gemacht. Während ein Teammitglied sich um die Python Datenextraktion gekümmet hat, hat ein anderes Mitglied das Readme geschrieben und commited. 
+
+
+
+Danach wurde der Finale Commit von einem anderen PC gemacht. 
+
+
+
 Fazit: Excel ist nicht intuitiv bedienbar und es gibt weder guten Community Support noch eine hilfreiche Dokumentation.
+
+Git funktioniert aber als Versionsverwaltung sehr gut. Es ist zwar anfänglich nicht sehr intuitiv, aber wenn man es mal verstanden hat ein gutes Tool.
 

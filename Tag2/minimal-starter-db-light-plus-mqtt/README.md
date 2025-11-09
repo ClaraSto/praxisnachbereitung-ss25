@@ -27,3 +27,5 @@ curl -X POST "http://localhost:8000/mqtt/publish?topic=demo/test&payload=hello"
 ```
 
 Optional: WebSockets Port 9001 ist aktiviert (für Browser-Clients).
+
+{"status":"ok","db":"ok","mqtt":"ok"}

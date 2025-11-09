@@ -21,3 +21,8 @@ erDiagram
     Assignment {
         
     }
+
+R1: inventory_no, personnel_no, DeviceType.code, Location.code
+sind eindeutig (UK).
+R2: Zu einem Zeitpunkt höchstens eine aktive Zuweisung je Device.
+R3: assigned_to darf leer sein (aktiver Zustand).

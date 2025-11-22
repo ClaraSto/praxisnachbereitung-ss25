@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title }}</title>
+    <style>
+      :root { font-family: -apple-system, system-ui, Segoe UI, Roboto, Ubuntu, Cantarell, Helvetica, Arial; }
+      body { margin: 0; padding: 2rem; background: #f3f4f6; }
+      .card { max-width: 880px; margin: 2rem auto; padding: 2rem; background: white; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.05); }
+      h1 { margin-top: 0; }
+      ul { padding-left: 1.2rem; }
+      a { color: #2563eb; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      code { background: #556bc2; padding: .15rem .35rem; border-radius: 4px; }
+      pre { background: #9cc603; color: #e5e7eb; padding: 1rem; border-radius: 8px; overflow: auto; font-size: .85rem; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>🎓 Grades Starter</h1>
+      <p>Demo-App mit <strong>FastAPI</strong>, <strong>Postgres</strong> und <strong>MQTT</strong> für die Domäne <em>Studierende / Module / Grade</em>.</p>
+
+      <h2>Nützliche Links</h2>
+      <ul>
+        <li><a href="/students">/students</a> – Studierende verwalten</li>
+        <li><a href="/grades">/grades</a> – Notenübersicht &amp; Formular</li>
+        <li><a href="/grades.csv">/grades.csv</a> – CSV-Export aller Noten</li>
+        <li><a href="/health">/health</a> – Health-Check</li>
+        <li><a href="/docs">/docs</a> – OpenAPI-Dokumentation</li>
+      </ul>
+
+      <h2>MQTT: Neue Note per Topic anlegen</h2>
+      <p>Der Service hört auf das Topic <code>grades/new</code>. Payload (JSON) z. B.:</p>
+      <pre><code>{ "student_id": 1, "module_id": 2, "grade_value": "1,7" }</code></pre>
+    </div>
+  </body>
+</html>

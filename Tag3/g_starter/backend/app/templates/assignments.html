@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title }}</title>
+    <style>
+      :root { font-family: -apple-system, system-ui, Segoe UI, Roboto, Ubuntu, Cantarell, Helvetica, Arial; }
+      body { margin: 0; padding: 2rem; background: #f3f4f6; }
+      .card { max-width: 1100px; margin: 2rem auto; padding: 2rem; background: white; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.05); }
+      h1 { margin-top: 0; }
+      form { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: .9rem; align-items: flex-end; }
+      label { display:flex; flex-direction: column; gap: .2rem; font-size: .9rem; }
+      input, select { width: 220px; padding: .35rem .55rem; border-radius: 8px; border: 1px solid #d1d5db; }
+      input.short { width: 120px; }
+      .full-row { width: 100%; }
+      button { padding: .45rem .9rem; border-radius: 999px; border: none; background: #2563eb; color: white; cursor: pointer; }
+      button:hover { background: #1d4ed8; }
+      table { border-collapse: collapse; width: 100%; margin-top: 1.5rem; }
+      th, td { border: 1px solid #e5e7eb; padding: .6rem .7rem; text-align: left; font-size: .9rem; }
+      th { background: #f9fafb; }
+      .status-active { color: #dc2626; font-weight: 600; }
+      .status-returned { color: #16a34a; }
+      nav { margin-bottom: 1.5rem; }
+      nav a { margin-right: 1rem; padding: .5rem 1rem; background: #e5e7eb; border-radius: 8px; text-decoration: none; color: #374151; }
+      nav a:hover { background: #d1d5db; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <nav>
+        <a href="/assignments">Ausleihverwaltung</a>
+        <a href="/devices">Geräte verwalten</a>
+      </nav>
+
+      <h1>Ausleihverwaltung</h1>
+      
+      <h3>Gerät ausgeben</h3>
+      <form method="post" action="/device_issue">
+        <input type="hidden" name="return_to" value="/assignments" />
+        <label>
+          Gerät
+          <input name="device_nr" required>
+          </input>
+        </label>
+        <label>
+          Personal Nummer
+          <input name="personal_nr" required>
+        </input>
+        </label>
+        <label>
+          Name
+          <input name="personal_nr" required>
+        </input>
+        </label>
+        <label>
+          Verliehen am
+          <input type="date" name="issued_at" required />
+        </label>
+        <div class="full-row">
+          <button type="submit">Ausgeben</button>
+        </div>
+      </form>
+
+      <h3>Gerät zurückgeben</h3>
+      <form method="post" action="/device_return">
+        <input type="hidden" name="return_to" value="/assignments" />
+        <label>
+          Geräte-Nummer
+          <input class="short" type="number" name="device_nr" required />
+        </label>
+        <label>
+          Zurückgegeben am
+          <input type="date" name="returned_at" required />
+        </label>
+        <div class="full-row">
+          <button type="submit">Zurückgeben</button>
+        </div>
+      </form>
+
+      <h3>Ausleihstatus</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Geräte-Nr.</th>
+            <th>Gerätetyp</th>
+            <th>Person</th>
+            <th>Ausgegeben am</th>
+            <th>Zurückgegeben am</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for a in assignments %}
+            <tr>
+              <td>{{ a.serial_number }}</td>
+              <td>{{ a.device_name }}</td>
+              <td>{{ a.person_name }}</td>
+              <td>{{ a.issued_at }}</td>
+              <td>{{ a.returned_at or '—' }}</td>
+              <td>
+                {% if a.returned_at %}
+                  <span class="status-returned">Zurückgegeben</span>
+                {% else %}
+                  <span class="status-active">Ausgeliehen</span>
+                {% endif %}
+              </td>
+            </tr>
+          {% else %}
+            <tr>
+              <td colspan="6"><em>Keine Ausleihen.</em></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

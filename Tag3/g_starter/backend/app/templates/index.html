@@ -18,21 +18,27 @@
   </head>
   <body>
     <div class="card">
-      <h1>🎓 Grades Starter</h1>
-      <p>Demo-App mit <strong>FastAPI</strong>, <strong>Postgres</strong> und <strong>MQTT</strong> für die Domäne <em>Studierende / Module / Grade</em>.</p>
+      <h1>Inventar App </h1>
+      <p>App mit <strong>FastAPI</strong>, <strong>Postgres</strong> und <strong>MQTT</strong>.</p>
 
       <h2>Nützliche Links</h2>
       <ul>
-        <li><a href="/students">/students</a> – Studierende verwalten</li>
-        <li><a href="/grades">/grades</a> – Notenübersicht &amp; Formular</li>
-        <li><a href="/grades.csv">/grades.csv</a> – CSV-Export aller Noten</li>
+        <li><a href="/devices">/devices</a> – Geräte verwalten</li>
+        <li><a href="/assignments">/assignments</a> – Ausleihen verwalten</li>
         <li><a href="/health">/health</a> – Health-Check</li>
         <li><a href="/docs">/docs</a> – OpenAPI-Dokumentation</li>
       </ul>
 
-      <h2>MQTT: Neue Note per Topic anlegen</h2>
-      <p>Der Service hört auf das Topic <code>grades/new</code>. Payload (JSON) z. B.:</p>
-      <pre><code>{ "student_id": 1, "module_id": 2, "grade_value": "1,7" }</code></pre>
+      <h2>MQTT: Neues Gerät per Topic anlegen</h2>
+      <p>Der Service hört auf das Topic <code>device/new</code>. Payload (JSON) z. B.:</p>
+      <pre><code>{ "device_id": 1234, "device_name": "SuperSmartphone3000", "location_name": "Berlinhausen", "note": "This is optional" }</code></pre>
+    
+      <p>Der Service hört auf das Topic <code>assinment/issue</code>. Payload (JSON) z. B.:</p>
+      <pre><code>{ "device_id: 1234, "personal_id": 2345, "personal_name": "Müller-Meier", "issued_at": "06.06.1999" }</code></pre> 
+    
+      <p>Der Service hört auf das Topic <code>assignment/return</code>. Payload (JSON) z. B.:</p>
+      <pre><code>{ "device_id": 1234, "returned_at": 12.12.2012, "grade_value": "1,7" }</code></pre> 
+    
     </div>
   </body>
 </html>

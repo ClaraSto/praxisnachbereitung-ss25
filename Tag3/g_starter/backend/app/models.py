@@ -1,50 +1,26 @@
-from datetime import datetime
+from datetime import date
 from pydantic import BaseModel
 
+class Device_Type(BaseModel):
+    type_id: int
+    device_name: str
 
-class Student(BaseModel):
-  student_id: int
-  matrikel: str
-  vorname: str
-  nachname: str
-  programme: str
-  semester: int
+class Location(BaseModel):
+    location_id: int
+    location_name: str
 
+class Person(BaseModel):
+    personal_nr: int
+    person_name: str
 
-class StudentCreate(BaseModel):
-  matrikel: str
-  vorname: str
-  nachname: str
-  programme: str
-  semester: int
+class Device(BaseModel):
+    serial_number: int
+    device_type_id: int
+    location_id: int
+    note: str | None = None
 
-
-class StudentUpdate(BaseModel):
-  matrikel: str
-  vorname: str
-  nachname: str
-  programme: str
-  semester: int
-
-
-class Module(BaseModel):
-  module_id: int
-  name: str
-
-
-class ModuleCreate(BaseModel):
-  name: str
-
-
-class Grade(BaseModel):
-  grade_id: int
-  student_id: int
-  module_id: int
-  grade_value: str
-  graded_at: datetime
-
-
-class GradeCreate(BaseModel):
-  student_id: int
-  module_id: int
-  grade_value: str
+class Assignment(BaseModel):
+    device_id: int
+    person_id: int
+    issued_at: date
+    returned_at: date | None = None
